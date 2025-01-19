@@ -10,4 +10,16 @@ datasource db {
 model Type {
   id   Int    @id @default(autoincrement())
   name String @unique
+  pokemonCards PokemonCard[]
+}
+model PokemonCard {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  pokedexId Int @unique
+  typeId     Int    // Clé étrangère vers Type
+  type       Type   @relation(fields: [typeId], references: [id]) 
+  lifePoints Int
+  size Float?
+  weight Float?
+  imageUrl String?
 }
